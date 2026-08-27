@@ -1,0 +1,153 @@
+import pandas as pd
+import time
+
+Old_Path = "C:\\Folder\\Old_Sample_File.xlsx"
+New_Path = "C:\\Folder\\New_Data_File.xlsx"
+
+df1 = pd.read_excel(Old_Path, header=None)
+
+oldCol0 = df1[0].to_list()
+oldCol1 = df1[1].to_list()
+oldCol2 = df1[2].to_list()
+oldCol3 = df1[3].to_list()
+oldCol4 = df1[4].to_list()
+oldCol5 = df1[5].to_list()
+oldCol6 = df1[6].to_list()
+oldCol7 = df1[7].to_list()
+oldCol8 = df1[8].to_list()
+
+
+oldCol0 = [oldCol0[i:i+64] for i in range(0, len(oldCol0), 64)]
+
+oldCol0 = [oldCol0[box][i:i+7]+[oldCol0[box][0]] for box in range(len(oldCol0) - 1)
+           for i in range(1, len(oldCol0[box]), 7)]
+
+oldCol1 = [oldCol1[i:i+64] for i in range(0, len(oldCol1), 64)]
+
+oldCol1 = [oldCol1[box][i:i+7]+[oldCol1[box][0]] for box in range(len(oldCol1) - 1)
+           for i in range(1, len(oldCol1[box]), 7)]
+
+oldCol2 = [oldCol2[i:i+64] for i in range(0, len(oldCol2), 64)]
+
+oldCol2 = [oldCol2[box][i:i+7]+[oldCol2[box][0]] for box in range(len(oldCol2) - 1)
+           for i in range(1, len(oldCol2[box]), 7)]
+
+oldCol3 = [oldCol3[i:i+64] for i in range(0, len(oldCol3), 64)]
+
+oldCol3 = [oldCol3[box][i:i+7]+[oldCol3[box][0]] for box in range(len(oldCol3) - 1)
+           for i in range(1, len(oldCol3[box]), 7)]
+
+oldCol4 = [oldCol4[i:i+64] for i in range(0, len(oldCol4), 64)]
+
+oldCol4 = [oldCol4[box][i:i+7]+[oldCol4[box][0]] for box in range(len(oldCol4) - 1)
+           for i in range(1, len(oldCol4[box]), 7)]
+
+oldCol5 = [oldCol5[i:i+64] for i in range(0, len(oldCol5), 64)]
+
+oldCol5 = [oldCol5[box][i:i+7]+[oldCol5[box][0]] for box in range(len(oldCol5) - 1)
+           for i in range(1, len(oldCol5[box]), 7)]
+
+oldCol6 = [oldCol6[i:i+64] for i in range(0, len(oldCol6), 64)]
+
+oldCol6 = [oldCol6[box][i:i+7]+[oldCol6[box][0]] for box in range(len(oldCol6) - 1)
+           for i in range(1, len(oldCol6[box]), 7)]
+
+oldCol7 = [oldCol7[i:i+64] for i in range(0, len(oldCol7), 64)]
+
+oldCol7 = [oldCol7[box][i:i+7]+[oldCol7[box][0]] for box in range(len(oldCol7) - 1)
+           for i in range(1, len(oldCol7[box]), 7)]
+
+oldCol8 = [oldCol8[i:i+64] for i in range(0, len(oldCol8), 64)]
+
+oldCol8 = [oldCol8[box][i:i+7]+[oldCol8[box][0]] for box in range(len(oldCol8) - 1)
+           for i in range(1, len(oldCol8[box]), 7)]
+
+df3 = pd.DataFrame(oldCol0 + oldCol1 + oldCol2 + oldCol3 + oldCol4 + oldCol5 + oldCol6
+                   + oldCol7 + oldCol8, columns="A B C D E F G Box".split())
+
+df3.loc[:, "Position"] = "Position"
+
+counter = 1
+
+for i in range(len(df3)):
+    if i >= 0 and i <= 8:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 9:
+        counter = 2
+
+    elif i >= 117 and i <= 125:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 126:
+        counter = 3
+
+    elif i >= 234 and i <= 242:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 243:
+        counter = 4
+
+    elif i >= 351 and i <= 359:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 360:
+        counter = 5
+
+    elif i >= 468 and i <= 476:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 477:
+        counter = 6
+
+    elif i >= 585 and i <= 593:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 594:
+        counter = 7
+
+    elif i >= 702 and i <= 710:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 711:
+        counter = 8
+
+    elif i >= 819 and i <= 827:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 828:
+        counter = 9
+
+    elif i >= 936 and i <= 944:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+    elif i == 945:
+        counter = 10
+
+    elif i >= 1053 and i <= 1061:
+        for j in range(13):
+            df3.at[i + (9 * j), 'Position'] = f"{counter}"
+        counter += 9
+
+with pd.ExcelWriter(New_Path, engine='openpyxl', mode='a') as writer:
+    df3.to_excel(writer, sheet_name='NewDataPositions ' + '{}'.format(time.strftime('%m%d%y-%H%M%S')), index=None)
+
+print('\nA new entry has been added to the Test_New_Data_File file.')
