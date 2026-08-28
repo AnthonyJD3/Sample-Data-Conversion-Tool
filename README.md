@@ -15,11 +15,43 @@ The legacy database exported sample information in a layout that mirrored the ph
 
 The new database requires the information in a normalized table where each sample position occupies a single row. The output contains the sample's data values followed by dedicated **Box** and **Position** columns.
 
-For example, an 8-value sample becomes:
+### Example: Original 9 × 9 Box With 8 Data Values per Sample
+
+A **9 × 9 sample-tube box contains 81 physical positions**. In the legacy export, those positions are arranged across **9 Excel columns**, matching the 9 columns of the physical box. Each individual sample position occupies **8 consecutive worksheet rows** because eight separate data values are stored for that sample.
+
+Before each box, the template adds a marker row containing the box name across all nine columns. For a box named `D1`, the beginning of the source data looks like this:
+
+```text
+Column A              Column B              Column C                    Column I
+---------------------------------------------------------------------------------
+Box D1                Box D1                Box D1          ...         Box D1
+
+Position 1 (1)        Position 2 (1)        Position 3 (1)  ...         Position 9 (1)
+Position 1 (2)        Position 2 (2)        Position 3 (2)  ...         Position 9 (2)
+Position 1 (3)        Position 2 (3)        Position 3 (3)  ...         Position 9 (3)
+Position 1 (4)        Position 2 (4)        Position 3 (4)  ...         Position 9 (4)
+Position 1 (5)        Position 2 (5)        Position 3 (5)  ...         Position 9 (5)
+Position 1 (6)        Position 2 (6)        Position 3 (6)  ...         Position 9 (6)
+Position 1 (7)        Position 2 (7)        Position 3 (7)  ...         Position 9 (7)
+Position 1 (8)        Position 2 (8)        Position 3 (8)  ...         Position 9 (8)
+
+Position 10 (1)       Position 11 (1)       Position 12 (1) ...         Position 18 (1)
+Position 10 (2)       Position 11 (2)       Position 12 (2) ...         Position 18 (2)
+...                    ...                    ...                        ...
+Position 10 (8)       Position 11 (8)       Position 12 (8) ...         Position 18 (8)
+
+...the same pattern continues through positions 73–81...
+```
+
+The first eight rows under the box marker therefore represent **positions 1–9**, the next eight rows represent **positions 10–18**, and the pattern continues until all **81 positions** in the box have been represented. The next marker row then begins the next box.
+
+The conversion script takes the eight vertically stored values belonging to each physical position and turns them into a single horizontal record. For example, **Position 1 in Box D1** becomes:
 
 | A | B | C | D | E | F | G | H | Box | Position |
 |---|---|---|---|---|---|---|---|---|---|
-| Sample value 1 | Sample value 2 | Sample value 3 | Sample value 4 | Sample value 5 | Sample value 6 | Sample value 7 | Sample value 8 | Box ID | Position # |
+| Position 1 (1) | Position 1 (2) | Position 1 (3) | Position 1 (4) | Position 1 (5) | Position 1 (6) | Position 1 (7) | Position 1 (8) | D1 | 1 |
+
+Position 2 is converted the same way into the next record, followed by Position 3, and so on. This continues until all sample positions from every box have been transformed into the row-based structure required by the new database.
 
 A 4-value sample uses columns `A` through `D`, while the 5-, 6-, 7-, and 8-value versions use the corresponding number of data columns.
 
@@ -110,7 +142,7 @@ At a high level, each script performs the following process:
 Output worksheets use names similar to:
 
 ```text
-NewDataPositions [date + time]
+NewDataPositions 070125-111235
 ```
 
 ## Expected Output Size
