@@ -35,11 +35,6 @@ Position 1 (6)        Position 2 (6)        Position 3 (6)  ...         Position
 Position 1 (7)        Position 2 (7)        Position 3 (7)  ...         Position 9 (7)
 Position 1 (8)        Position 2 (8)        Position 3 (8)  ...         Position 9 (8)
 
-Position 10 (1)       Position 11 (1)       Position 12 (1) ...         Position 18 (1)
-Position 10 (2)       Position 11 (2)       Position 12 (2) ...         Position 18 (2)
-...                    ...                    ...                        ...
-Position 10 (8)       Position 11 (8)       Position 12 (8) ...         Position 18 (8)
-
 ...the same pattern continues through positions 73–81...
 ```
 
