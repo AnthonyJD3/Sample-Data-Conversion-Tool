@@ -300,11 +300,8 @@ A future version could consolidate the individual scripts into a single configur
 - **openpyxl** — Excel workbook output/append engine
 - **Excel (`.xlsx`)** — legacy input templates and converted output
 
-## Data Privacy
 
-The example files in a public portfolio repository should contain only synthetic, anonymized, or otherwise non-sensitive data. Production database exports, confidential sample identifiers, credentials, and proprietary records should not be committed to GitHub.
-
-## Project Purpose
+## Skills Demonstrated
 
 This project demonstrates practical experience with:
 
@@ -316,7 +313,3 @@ This project demonstrates practical experience with:
 - working with inconsistent legacy data structures,
 - translating physical storage layouts into database-ready records, and
 - reducing manual work during a database transition.
-
-## License
-
-No license has been specified for this portfolio project.
